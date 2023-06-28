@@ -13,8 +13,9 @@ Please follow the instructions to install and use the tool.
 1. Clone the repo
 
 2. Move to the project directory:
-`cd AI-grading-v2``
+<code> cd AI-grading-v2 </code>
 
 3. Install dependencies
-`pip install -r requirements.txt``
+`pip install -r requirements.txt`
+
 
