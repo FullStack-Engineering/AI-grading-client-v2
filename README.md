@@ -13,7 +13,7 @@ Please follow the instructions to install and use the tool.
 1. Clone the repo
 
 2. Move to the project directory: 
-<code> cd AI-grading-v2 </code>
+<code> cd AI-grading-client-v2 </code>
 
 3. Install dependencies: 
 `pip install -r requirements.txt`
@@ -25,7 +25,7 @@ In this initial phase, we will use the tool to filter out the interviews that fa
 ### Usage:
 
 1. Move to the project directory : 
-<code> cd AI-grading-v2 </code>
+<code> cd AI-grading-client-v2 </code>
 
 2. Copy the hireflix URL for the interview you want to grade. it should look like this: `https://admin.hireflix.com/es/jobs/<position-id>/interview/<candidate-interview-id>` 
 
