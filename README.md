@@ -2,7 +2,7 @@
 
 This is the second version of the AI grading tool. This tool is designed to grade Hireflix interviews for the following technologies/ skills: 
 
-> React, PM (Project Manager), .NET, Node, QA Automation, QA Manual, PHP - Laravel, Java, Python Data engineer, Python, Business Analyst, Ruby, DevOps, Angular
+> React, PM (Project Manager), .NET, Node, QA Automation, QA Manual, PHP - Laravel, Java, Python Data Engineer, Python, Business Analyst, Ruby, DevOps, Angular, AI Machine Learning Engineer, Product Manager.
 
 Please follow the instructions to install and use the tool.
 
@@ -31,7 +31,7 @@ In this initial phase, we will use the tool to filter out the interviews that fa
 
 3. Copy the name of the tech/skill to be evaluated:
 
->> React, PM, .NET, Node, QA Automation, QA Manual, PHP - Laravel, Java, Python Data engineer, Python, Business Analyst, Ruby, DevOps - AWS, Angular
+>> React, PM, .NET, Node, QA Automation, QA Manual, PHP - Laravel, Java, Python Data engineer, Python, Business Analyst, Ruby, DevOps - AWS, Angular, ML, Product Manager
 
 4. Run the script using the url and tech/skill:  `python3 AIGrade_v2.py --url <copied-url> --tech <copied-tech>` 
 
