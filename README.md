@@ -38,11 +38,12 @@ In this initial phase, we will use the tool to filter out the interviews that fa
 5. Verify the output of the script in the console
 
 ### Output:
-The tool will provide three values as output:
+The tool will provide four values as output:
 
 1. `AI Score`: Grade of the interview
 2. `Decision`: Final Decision based on the interview score
 3. `Flag`: Recommendation based on grading results
+4. `Detailed Questions' Scores`: JSON-string with the score for each question in the format `{<question-number>: <score>}`
 
 If the score is higher than 7, you should go and grade the interview. Make sure to store the AI results in JIRA after you have finished grading. If the score is bellow 7, and the value of `Flag` is `No-Hire`, you should skip the interview. In this case, you shoul provide the AI score in the candidate's Lever profile, and make a note clarifying the decision made by the AI tool.
 
