@@ -36,6 +36,23 @@ response = requests.post(url="https://dev-fs-ai-vetting.fullstack.com/ScoreInter
 
 # %%
 if response.json():
-    print('AI Score: {0}'.format(response.json()['final_score']))
-    print('Decision: {0}'.format(response.json()['decision']))
-    print('Flag: {0}'.format(response.json()['flag']))
+    
+    final_score = response.json()['final_score']
+    decision = response.json()['decision']
+    flag = response.json()['flag']
+    
+    if flag == "Hire":
+        score_name = 'knn_score'
+    else:
+        score_name = 'rf_score'
+    
+    question_scores = json.loads(response.json()['question_scores'])[score_name]
+    
+    
+    print('AI Score: {0}'.format(final_score))
+    print('Decision: {0}'.format(decision))
+    print('Flag: {0}'.format(flag))
+    print(f"Detailed Questions' Scores: {json.dumps(question_scores)}")
+
+else:
+    print('Error Running the app. Please try again.')
