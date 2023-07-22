@@ -48,6 +48,6 @@ The tool will provide four values as output:
 If the score is higher than 7, you should go and grade the interview. Make sure to store the AI results in JIRA after you have finished grading. If the score is bellow 7, and the value of `Flag` is `No-Hire`, you should skip the interview. In this case, you shoul provide the AI score in the candidate's Lever profile, and make a note clarifying the decision made by the AI tool.
 
 _______________
-Last update: 6/28/2023
+Last update: 7/22/2023
 
 
