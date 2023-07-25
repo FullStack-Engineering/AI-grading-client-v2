@@ -41,12 +41,23 @@ if response.json():
     decision = response.json()['decision']
     flag = response.json()['flag']
     
-    if flag == "Hire":
-        score_name = 'knn_score'
-    else:
-        score_name = 'rf_score'
+    xgb_score = response.json()['xgb_score']
+    rf_score = response.json()['rf_score']
+    knn_score = response.json()['knn_score']
     
-    question_scores = json.loads(response.json()['question_scores'])[score_name]
+    if flag == 'Hire':
+        col_scores = 'knn_score'
+    elif flag == 'Review':
+        col_max = max([xgb_score, rf_score, knn_score])
+        col_idx = [xgb_score, rf_score, knn_score].index(col_max)
+        col_scores = ['xgb_score', 'rf_score', 'knn_score'][col_idx]
+    else:
+        col_max = min([xgb_score, rf_score, knn_score])
+        col_idx = [xgb_score, rf_score, knn_score].index(col_max)
+        col_scores = ['xgb_score', 'rf_score', 'knn_score'][col_idx]
+        
+    
+    question_scores = json.loads(response.json()['question_scores'])[col_scores]
     
     
     print('AI Score: {0}'.format(final_score))
