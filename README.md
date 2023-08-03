@@ -2,7 +2,7 @@
 
 This is the second version of the AI grading tool. This tool is designed to grade Hireflix interviews for the following technologies/ skills: 
 
-> React, PM (Project Manager), .NET, Node, QA Automation, QA Manual, PHP - Laravel, Java, Python Data Engineer, Python, Business Analyst, Ruby, DevOps, Angular, AI Machine Learning Engineer, Product Manager.
+> React, .NET, Node, PHP - Laravel, Java, Python, Ruby, Angular.
 
 Please follow the instructions to install and use the tool.
 
@@ -31,11 +31,15 @@ In this initial phase, we will use the tool to filter out the interviews that fa
 
 3. Copy the name of the tech/skill to be evaluated:
 
->> React, PM, .NET, Node, QA Automation, QA Manual, PHP - Laravel, Java, Python Data engineer, Python, Business Analyst, Ruby, DevOps - AWS, Angular, ML, Product Manager
+>> React, .NET, Node, PHP - Laravel, Java, Python, Ruby, Angular
 
-4. Run the script using the url and tech/skill:  `python3 AIGrade_v2.py --url <copied-url> --tech <copied-tech>` 
+4. Take into account the Seniority of the candidadate based on the recruiters assessment and position:
 
-5. Verify the output of the script in the console
+>> Principal, Senior, Mid-level, Junior
+
+5. Run the script using the url, tech/skill, and seniority:  `python3 AIGrade_v2.py --url <copied-url> --tech <copied-tech> --seniority <seniority-level>` 
+
+6. Verify the output of the script in the console
 
 ### Output:
 The tool will provide four values as output:
@@ -45,9 +49,9 @@ The tool will provide four values as output:
 3. `Flag`: Recommendation based on grading results
 4. `Detailed Questions' Scores`: JSON-string with the score for each question in the format `{<question-number>: <score>}`
 
-If the score is higher than 7, you should go and grade the interview. Make sure to store the AI results in JIRA after you have finished grading. If the score is bellow 7, and the value of `Flag` is `No-Hire`, you should skip the interview. In this case, you shoul provide the AI score in the candidate's Lever profile, and make a note clarifying the decision made by the AI tool.
+If the score is higher than 7, you should go and grade the interview. Make sure to store the AI results in JIRA after you have finished grading. If the score is bellow 7, and the value of `Flag` is `No-Hire`, you should skip the interview. In this case, you should provide the AI score in the candidate's Lever profile, and make a note clarifying the decision made by the AI tool.
 
 _______________
-Last update: 7/22/2023
+Last update: 8/03/2023
 
 
