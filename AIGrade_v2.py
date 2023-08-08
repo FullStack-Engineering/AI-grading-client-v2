@@ -3,6 +3,7 @@ import pandas as pd
 import json
 import requests
 from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
+import concurrent.futures
 import warnings
 import os
 from dotenv import load_dotenv, find_dotenv
@@ -33,11 +34,17 @@ headers = {'Authorization': f'Bearer {access_token}'}
 # %%
 interview_id = hf_url.split('/')[-1]
 #%%
-
+print(" ### --- Grading Questions --- ###")
 response = requests.post(url="https://dev-fs-ai-vetting.fullstack.com/ScoreInterview", headers=headers, data=json.dumps({'interview_id': interview_id,
                                                                                                                          'technology': technology,
                                                                                                                          'seniority':seniority
                                                                                                                          }))
+
+def get_feedback(ind:str, payload: dict, headers:dict = headers):
+    
+    feedback_ = requests.post(url = "https://dev-fs-ai-vetting.fullstack.com/SingleFeedback", data = json.dumps(payload), headers= headers)
+    
+    return {ind: feedback_.json()['feedback']}
 
 # %%
 if response.json():
@@ -61,13 +68,70 @@ if response.json():
         
     
     question_scores = json.loads(response.json()['question_scores'])[col_scores]
+    question_embeddings = json.loads(response.json()['question_scores'])['embedding']
+    question_description = json.loads(response.json()['question_scores'])['description']
+    question_answer = json.loads(response.json()['question_scores'])['answer_transcript']
     
-    
+    print(" ### --- Questions Graded --- ###")
+    print("")
     print('AI Score: {0}'.format(final_score))
     print('Decision: {0}'.format(decision))
     print('Flag: {0}'.format(flag))
-    print(f"Detailed Questions' Scores: {json.dumps(question_scores)}")
+    print("")
+    print(" ### --- Creating Feedback --- ###")
+    
+    
+    workload_list = [
+        (idx, {
+                'technology':'Java',
+                'embedding':question_embeddings[idx],
+                'question':question_description[idx],
+                'answer': question_answer[idx],
+                'score':score
+        }
+        ) for idx, score in question_scores.items()
+    ]
+    
+    question_feedback = {}
+    with concurrent.futures.ThreadPoolExecutor() as executor:
+        futures = []
+        for payload_ in workload_list:
+            futures.append(
+                executor.submit(get_feedback, ind = payload_[0], payload = payload_[1], headers = headers)
+            )
+        for future in concurrent.futures.as_completed(futures):
+            
+            question_feedback.update(future.result())
+    
+    questions_frame = json.dumps({'prompt_feedback':question_feedback})
+    
+    payload_3 = {
+        'technology':'Java',
+        'final_score':final_score,
+        'question_scores':questions_frame
+            }
+    
+    response2 = requests.post(url = "https://dev-fs-ai-vetting.fullstack.com/FinalFeedback", 
+                          headers = headers, 
+                          data = json.dumps(payload_3))
+    
+    final_feedback = response2.json()['final_feedback']
+    
+    print(" ### --- Feedback Created --- ###")
+    
+    print("")
+    
+    print(f'Final Feedback: {final_feedback}')
+    print("")
+    
+    print(" ### --- Detailed Scores --- ###")
+    print("")
+    print(f"Detailed Questions' Scores: {question_scores}")
+    print("\n")
+    
 
 else:
     print('Error Running the app. Please try again.')
+
+
 # %%
