@@ -89,7 +89,7 @@ if response.json():
 
     workload_list = [
         (idx, {
-            'technology': 'Java',
+            'technology': technology,
             'embedding': question_embeddings[idx],
             'question':question_description[idx],
             'answer': question_answer[idx],
@@ -99,7 +99,7 @@ if response.json():
     ]
 
     question_feedback = {}
-    with concurrent.futures.ThreadPoolExecutor() as executor:
+    with concurrent.futures.ThreadPoolExecutor(max_workers = 4) as executor:
         futures = []
         for payload_ in workload_list:
             futures.append(
@@ -113,7 +113,7 @@ if response.json():
     questions_frame = json.dumps({'prompt_feedback': question_feedback})
 
     payload_3 = {
-        'technology': technology,
+        'technology': 'Java',
         'final_score': final_score,
         'question_scores': questions_frame
     }
