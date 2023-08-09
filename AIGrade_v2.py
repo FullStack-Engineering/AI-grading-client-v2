@@ -113,7 +113,7 @@ if response.json():
     questions_frame = json.dumps({'prompt_feedback': question_feedback})
 
     payload_3 = {
-        'technology': 'Java',
+        'technology': technology,
         'final_score': final_score,
         'question_scores': questions_frame
     }
