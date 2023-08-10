@@ -47,11 +47,13 @@ The tool will provide four values as output:
 1. `AI Score`: Grade of the interview
 2. `Decision`: Final Decision based on the interview score
 3. `Flag`: Recommendation based on grading results
-4. `Detailed Questions' Scores`: JSON-string with the score for each question in the format `{<question-number>: <score>}`
+4. `Final Feedback`: Final Feedback for the candidate's interview
+
+After grading each question, the script will store the detailed results in a JSON file named `detailed_scores_<interview-id>.json` in the project's working directory. The JSON file stores both the score and the feedback for each question.
 
 If the score is higher than 7, you should go and grade the interview. Make sure to store the AI results in JIRA after you have finished grading. If the score is bellow 7, and the value of `Flag` is `No-Hire`, you should skip the interview. In this case, you should provide the AI score in the candidate's Lever profile, and make a note clarifying the decision made by the AI tool.
 
 _______________
-Last update: 8/08/2023
+Last update: 10/08/2023
 
 
