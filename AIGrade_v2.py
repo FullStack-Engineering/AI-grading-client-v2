@@ -144,7 +144,4 @@ if response.json():
     print("")
 
 else:
-    print('Error Running the app. Please try again.')
-
-
-# %%
+    print('Error Running the app. Please try again. If the error repeats, contact the admin.')
