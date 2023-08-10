@@ -99,7 +99,7 @@ if response.json():
     ]
 
     question_feedback = {}
-    with concurrent.futures.ThreadPoolExecutor(max_workers = 4) as executor:
+    with concurrent.futures.ThreadPoolExecutor(max_workers=4) as executor:
         futures = []
         for payload_ in workload_list:
             futures.append(
@@ -112,8 +112,20 @@ if response.json():
 
     questions_frame = json.dumps({'prompt_feedback': question_feedback})
 
+    export_details = [question_scores, question_feedback]
+
+    print(" ### --- Exporting Detailed Scores --- ### \n")
+
+    with open(f'./detailed_scores_{interview_id}.json', 'w') as f:
+        json.dump(export_details, f)
+
+    print(
+        f" ### --- Detailed scores exported to 'detailed_scores_{interview_id}.json' --- ### \n")
+
+    print(" ### --- Creating Final Feedback --- ### \n")
+
     payload_3 = {
-        'technology': 'Java',
+        'technology': technology,
         'final_score': final_score,
         'question_scores': questions_frame
     }
@@ -130,12 +142,6 @@ if response.json():
 
     print(f'Final Feedback: {final_feedback}')
     print("")
-
-    print(" ### --- Detailed Scores --- ###")
-    print("")
-    print(f"Detailed Questions' Scores: {question_scores}")
-    print("\n")
-
 
 else:
     print('Error Running the app. Please try again.')
