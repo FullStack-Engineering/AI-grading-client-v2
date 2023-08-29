@@ -2,7 +2,7 @@
 
 This is the second version of the AI grading tool. This tool is designed to grade Hireflix interviews for the following technologies/ skills: 
 
-> React, .NET, Node, PHP - Laravel, Java, Python, Ruby, Angular.
+> React, .NET, Node, PHP - Laravel, Java, Ruby, Angular.
 
 Please follow the instructions to install and use the tool.
 
@@ -31,7 +31,7 @@ In this initial phase, we will use the tool to filter out the interviews that fa
 
 3. Copy the name of the tech/skill to be evaluated:
 
->> React, .NET, Node, PHP - Laravel, Java, Python, Ruby, Angular
+>> React, .NET, Node, PHP - Laravel, Java, Ruby, Angular
 
 4. Take into account the Seniority of the candidadate based on the recruiters assessment and position:
 
